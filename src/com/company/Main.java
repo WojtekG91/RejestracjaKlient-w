@@ -19,12 +19,14 @@ public class Main {
         ServiceRepository.addService(service3);
         ServiceRepository.addService(service4);
 
-        ServiceRepository.showServices();
 
+        ServiceRepository.showServices();
 
 
         Client Ewelina = new Client("Ewelina", "Sanka","66666666");
         Ewelina.chooseService(1);
 
+
+        Flow.start();
     }
 }

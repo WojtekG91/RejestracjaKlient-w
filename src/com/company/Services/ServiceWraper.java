@@ -6,5 +6,4 @@ public class ServiceWraper {
     String name;
     Double price;
     Double duration;
-
 }

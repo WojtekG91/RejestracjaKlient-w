@@ -19,6 +19,7 @@ public class Employee extends Person {
         return null;
     }
 
+
     public int getIncomeGenerated() {
         return incomeGenerated;
     }
