@@ -15,9 +15,12 @@ public class Client extends Person {
         super(name, surname, phone);
     }
 
-    public static void chooseService(Integer n){
-        //System.out.println("Prosze wybrac usługę:");
-//        ServiceRepository.chooseService(n);
+    public static void chooseService(){
+        System.out.println("Prosze wybrac usługę:");
+        ServiceRepository.showServices();
+        Scanner scanner = new Scanner(System.in);
+        Integer n = scanner.nextInt();
+        ServiceRepository.chooseService(n);
 
     }
 

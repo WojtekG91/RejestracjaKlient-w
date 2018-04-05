@@ -23,8 +23,9 @@ public class ServiceRepository {
     }
 
     public static void chooseService(Integer index) {
-        serviceLists.get(index).toString();
-            }
+        serviceLists.get(index);
+        System.out.println(serviceLists.get(index).toString());
+    }
 
 //    public static void chooseService(Integer index) {
 //        System.out.println(serviceLists.get(index).toString());

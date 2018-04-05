@@ -41,14 +41,17 @@ public class Flow {
 
 
         switch (loginType) {
+            //Klient
             case 1: {
                 while (loginType == 1) {
                     System.out.println("jaka usługe chcesz wybrać");
                     ServiceRepository.showServices();
                     ServiceRepository.chooseService(scanner.nextInt());
+
                     break;
                 }
             }
+            //Pracownik
             case 2: {
                 while (loginType == 2) {
                     System.out.println("co chcesz zrobic??");
