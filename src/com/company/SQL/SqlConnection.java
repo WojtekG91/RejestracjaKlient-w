@@ -3,18 +3,14 @@ package com.company.SQL;
 import java.sql.*;
 
 public class SqlConnection {
-    Connection connect = null;
-    Statement statement = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
 
-    private String driver = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/project?" + "user=root&password=";
+    public static Connection Connect() {
 
-    public void Connect() {
+        Connection connect = null;
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost/project?" + "user=root&password=";
 
-
-        try {
+            try {
             Class.forName(driver);
             // Setup the connection with the DB
             connect = DriverManager.getConnection(url);
@@ -23,5 +19,6 @@ public class SqlConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return connect;
     }
 }
