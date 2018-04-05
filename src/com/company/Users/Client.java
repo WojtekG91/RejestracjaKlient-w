@@ -1,7 +1,6 @@
 package com.company.Users;
 
 
-import com.company.Services.Service;
 import com.company.Services.ServiceRepository;
 
 import java.util.Scanner;

@@ -12,7 +12,6 @@ public class SqlConnection {
 
             try {
             Class.forName(driver);
-            // Setup the connection with the DB
             connect = DriverManager.getConnection(url);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

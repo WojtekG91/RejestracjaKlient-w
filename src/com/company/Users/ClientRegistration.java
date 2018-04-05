@@ -1,12 +1,12 @@
 package com.company.Users;
 
-import java.sql.*;
+import com.company.SQL.InsertSQL;
+
 import java.util.Scanner;
 
 public class ClientRegistration {
-    String name, surname, mail, phone, password, password2;
-
-    public String userRegistration() {
+        public static void userRegistration() {
+        String name, surname, mail, phone, password, password2;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj swoje imie:");
         name = scanner.nextLine();
@@ -26,36 +26,12 @@ public class ClientRegistration {
             if (password.equals(password2)) {
                 System.out.println("Poprawne");
                 passwordCheack = true;
+                InsertSQL.registrationStatement(name, surname, mail, phone, password);
             } else {
                 System.out.println("Hasła sie nie zgadzają");
             }
-        } while (passwordCheack = false);
-
-        Connection connect = null;
-
-        PreparedStatement preparedStatement = null;
-
-        // This will load the MySQL driver, each DB has its own driver
+        } while (passwordCheack == false);
 
 
-        try {
-
-            String sqlInsert = "INSERT INTO `Tclients`(`Name`, `Surname`, `Email`, `Phone`, `Password`)" + "VALUES (?, ?, ?, ?, ?,?);";
-
-            preparedStatement = connect.prepareStatement(sqlInsert);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, surname);
-            preparedStatement.setString(4, mail);
-            preparedStatement.setString(5, phone);
-            preparedStatement.setString(6, password);
-            preparedStatement.executeUpdate();
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        return "Registration succesfull";
     }
 }
