@@ -1,26 +1,31 @@
 package com.company.Users;
 
-
-import com.company.Services.ServiceRepository;
-
 import java.util.Scanner;
 
 public class Client extends Person {
     private int noOfVisits;
     private int paidForService;
+    private String passwordHash, mail;
 
-
-    public Client(String name, String surname, String phone) {
+    public Client(String name, String surname, String phone, String passwordHash, String mail) {
         super(name, surname, phone);
+        this.passwordHash = passwordHash;
+        this.mail = mail;
     }
 
-    public static void chooseService(){
+    public static void chooseService() {
         System.out.println("Prosze wybrac usługę:");
-        ServiceRepository.showServices();
         Scanner scanner = new Scanner(System.in);
         Integer n = scanner.nextInt();
-        ServiceRepository.chooseService(n);
 
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public String getMail() {
+        return mail;
     }
 
     public int getNoOfVisits() {

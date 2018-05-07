@@ -1,23 +1,24 @@
 package com.company.Users;
 
 import com.company.SQL.SQLStatements;
+import com.company.SQL.SqlConnection;
 
 public class Login {
-    private String mail, password;
     private Hashing hashing = new Hashing();
 
-    public void LoginAtempt(String mail, String password) {
-        String dbPassword = SQLStatements.getSqlPassword(mail);
-        boolean mailCheck = SQLStatements.getSqlMail(mail);
-        if (mailCheck) {
-            password = hashing.HashingPassword(password);
-            if (dbPassword.equals(password)) {
-                System.out.println("Logowanie udane");
-            } else {
-                System.out.println("Niepoprawny email lub hasło");
-            }
+    public boolean LoginAtempt(String mail, String password) {
+       SQLStatements sqlStatements = new SQLStatements();
+       sqlStatements.getClient(mail);
+//        boolean mailCheck = SQLStatements.getSqlMail(mail);
+        System.out.println(sqlStatements.getClient(mail).getPasswordHash());
+        System.out.println(sqlStatements.getClient(mail).getName());
+        System.out.println(sqlStatements.getClient(mail).getSurname());
+        System.out.println(sqlStatements.getClient(mail).getPhone());
+        System.out.println(sqlStatements.getClient(mail).getMail());
+        if ((sqlStatements.getClient(mail).getMail()).equals(hashing.HashingPassword(password))) {
+            return true;
         } else {
-            System.out.println("no user with this mail");
+            return false;
         }
     }
 }

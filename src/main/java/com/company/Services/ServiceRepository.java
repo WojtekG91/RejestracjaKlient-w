@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ServiceRepository {
-    public static HashMap<Integer, Service> serviceLists = new HashMap<>();
+    static HashMap<Integer, Service> serviceLists = new HashMap<>();
 
 
-    public static void addService(Service service) {
+    static void addService(Service service) {
         Integer index = serviceLists.size() - 1;
         serviceLists.put(index + 1, service);
     }
 
-    public static void showServices() {
+    public void showServices() {
         for (int i = 0; i < serviceLists.size(); i++) {
-            System.out.println("Service no: " + i + " " + serviceLists.get(i));
+            serviceLists.get(i).toString();
         }
     }
 
@@ -22,9 +22,8 @@ public class ServiceRepository {
         serviceLists.remove(index);
     }
 
-    public static void chooseService(Integer index) {
-        serviceLists.get(index);
-        System.out.println(serviceLists.get(index).toString());
+    public String chooseService(Integer index) {
+        return serviceLists.get(index).toString();
     }
 
 //    public static void chooseService(Integer index) {

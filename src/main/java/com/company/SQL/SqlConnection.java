@@ -8,7 +8,7 @@ public class SqlConnection {
 
         Connection connect = null;
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost/project?" + "user=root&password=";
+        String url = "jdbc:mysql://localhost/ClientRegistration?" + "user=root&password=";
 
             try {
             Class.forName(driver);

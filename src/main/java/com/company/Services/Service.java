@@ -1,8 +1,5 @@
 package com.company.Services;
 
-import java.sql.Time;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Service {
     private String name;
     private Double price;

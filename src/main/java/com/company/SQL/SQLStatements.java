@@ -1,5 +1,6 @@
 package com.company.SQL;
 
+import com.company.Users.Client;
 import sun.security.util.Password;
 
 import java.sql.*;
@@ -50,22 +51,32 @@ public class SQLStatements {
         }
     }
 
-    public static String getSqlPassword(String mail) {
-        String passwordHash = null;
+    public Client getClient(String mail) {
+        String userPasswordHash = "";
+        String userName = "";
+        String userSurname = "";
+        String userPhone = "";
+        String userMail = "";
+        int userId;
         Connection dbConnect = null;
         Statement Statement = null;
-        String sqlSelect = "SELECT Password FROM tclients WHERE Mail = '" + mail + "'";
+        String sqlSelect = "SELECT Name, Surname, Phone, Mail, Password FROM tclients WHERE Mail = '" + mail + "'";
         try {
             dbConnect = SqlConnection.Connect();
             Statement = dbConnect.createStatement();
             ResultSet rs = Statement.executeQuery(sqlSelect);
             while (rs.next()) {
-                passwordHash = rs.getString("Password");
+                userName = rs.getString("Name");
+                userSurname = rs.getString("Surname");
+                userPhone = rs.getString("Phone");
+                userPasswordHash = rs.getString("Password");
+                userMail = rs.getString("Mail");
             }
             dbConnect.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return passwordHash;
+        return new Client(userName, userSurname, userPhone, userMail, userPasswordHash);
     }
+
 }
