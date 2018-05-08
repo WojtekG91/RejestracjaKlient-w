@@ -76,7 +76,7 @@ public class SQLStatements {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Client(userName, userSurname, userPhone, userMail, userPasswordHash);
+        return new Client(userName, userSurname, userPhone, userPasswordHash, userMail);
     }
 
 }

@@ -1,8 +1,8 @@
 package com.company.Services;
 
-public class ServiceList {
+public class ServiceListGenerator {
 
-    private static void generatingServiceList() {
+    private static void generatingServiceList(ServiceRepository serviceRepository) {
         Service service1 = new Service("Malowanie lakierem klasycznym", 50.00, 2.00);
         Service service2 = new Service("Malowanie lakierem hybrydowym", 80.00, 1.50);
         Service service3 = new Service("Żele", 100.00, 3.0);

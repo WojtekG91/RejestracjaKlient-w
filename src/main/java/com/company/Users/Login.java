@@ -15,7 +15,7 @@ public class Login {
         System.out.println(sqlStatements.getClient(mail).getSurname());
         System.out.println(sqlStatements.getClient(mail).getPhone());
         System.out.println(sqlStatements.getClient(mail).getMail());
-        if ((sqlStatements.getClient(mail).getMail()).equals(hashing.HashingPassword(password))) {
+        if ((sqlStatements.getClient(mail).getPasswordHash()).equals(hashing.HashingPassword(password))) {
             return true;
         } else {
             return false;

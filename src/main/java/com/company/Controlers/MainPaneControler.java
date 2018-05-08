@@ -21,7 +21,7 @@ public class MainPaneControler {
 
     public void serviceChoiceScreenOn(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ScheduleServicePane.fxml"));
-        Parent root1 = /*(Parent)*/ fxmlLoader.load();
+        Parent root1 = (Parent) fxmlLoader.load();
         Scene mainScene = new Scene(root1);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainScene);

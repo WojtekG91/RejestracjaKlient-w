@@ -7,14 +7,14 @@ public class ServiceRepository {
     static HashMap<Integer, Service> serviceLists = new HashMap<>();
 
 
-    static void addService(Service service) {
+    public static void addService(Service service) {
         Integer index = serviceLists.size() - 1;
         serviceLists.put(index + 1, service);
     }
 
-    public void showServices() {
+    public static void showServices() {
         for (int i = 0; i < serviceLists.size(); i++) {
-            serviceLists.get(i).toString();
+            System.out.println(serviceLists.get(i).toString());
         }
     }
 
