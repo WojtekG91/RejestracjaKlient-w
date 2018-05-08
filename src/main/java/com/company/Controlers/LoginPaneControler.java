@@ -1,5 +1,6 @@
 package com.company.Controlers;
 
+import com.company.SQL.SQLStatements;
 import com.company.Users.ClientRegistration;
 import com.company.Users.Login;
 import javafx.application.Application;
@@ -47,6 +48,8 @@ public class LoginPaneControler implements Initializable {
             window.show();
             messageField.setVisible(true);
             messageField.setText("Udane");
+            SQLStatements sqlStatements = new SQLStatements();
+            sqlStatements.getClient(mailTextField.getText());
         } else {
             messageField.setVisible(true);
             messageField.setText("Logowanie nieudane");

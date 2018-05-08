@@ -57,15 +57,16 @@ public class SQLStatements {
         String userSurname = "";
         String userPhone = "";
         String userMail = "";
-        int userId;
+        Integer userId = 0;
         Connection dbConnect = null;
         Statement Statement = null;
-        String sqlSelect = "SELECT Name, Surname, Phone, Mail, Password FROM tclients WHERE Mail = '" + mail + "'";
+        String sqlSelect = "SELECT ClientID, Name, Surname, Phone, Mail, Password FROM tclients WHERE Mail = '" + mail + "'";
         try {
             dbConnect = SqlConnection.Connect();
             Statement = dbConnect.createStatement();
             ResultSet rs = Statement.executeQuery(sqlSelect);
             while (rs.next()) {
+                userId = rs.getInt("ClientID");
                 userName = rs.getString("Name");
                 userSurname = rs.getString("Surname");
                 userPhone = rs.getString("Phone");
@@ -76,7 +77,7 @@ public class SQLStatements {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Client(userName, userSurname, userPhone, userPasswordHash, userMail);
+        return new Client(userId, userName, userSurname, userPhone, userPasswordHash, userMail);
     }
 
 }

@@ -6,11 +6,13 @@ public class Client extends Person {
     private int noOfVisits;
     private int paidForService;
     private String passwordHash, mail;
+    private int clientId;
 
-    public Client(String name, String surname, String phone, String passwordHash, String mail) {
+    public Client(Integer clientId, String name, String surname, String phone, String passwordHash, String mail) {
         super(name, surname, phone);
         this.passwordHash = passwordHash;
         this.mail = mail;
+        this.clientId = clientId;
     }
 
     public static void chooseService() {
@@ -18,6 +20,10 @@ public class Client extends Person {
         Scanner scanner = new Scanner(System.in);
         Integer n = scanner.nextInt();
 
+    }
+
+    public int getClientId() {
+        return clientId;
     }
 
     public String getPasswordHash() {

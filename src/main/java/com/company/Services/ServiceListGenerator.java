@@ -14,5 +14,6 @@ public class ServiceListGenerator {
         ServiceRepository.addService(service3);
         ServiceRepository.addService(service4);
         ServiceRepository.addService(service5);
+
     }
 }
