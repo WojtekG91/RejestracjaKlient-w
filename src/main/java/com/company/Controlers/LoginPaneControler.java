@@ -40,16 +40,22 @@ public class LoginPaneControler implements Initializable {
     public void login(ActionEvent event) throws Exception {
         Login login = new Login();
         if (login.LoginAtempt(mailTextField.getText(), passwordTextField.getText())) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MainPane.fxml"));
-            Parent root1 = /*(Parent)*/ fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MainPane.fxml"));
+            Parent root1 = (Parent) loader.load();
+            MainPaneControler mainPaneControler = loader.getController();
+
+            SQLStatements sqlStatements = new SQLStatements();
+            mainPaneControler.getClient(sqlStatements.getClient(mailTextField.getText()));
+
             Scene mainScene = new Scene(root1);
+            //ta linia pobiera informacje o stage
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(mainScene);
             window.show();
+
             messageField.setVisible(true);
             messageField.setText("Udane");
-            SQLStatements sqlStatements = new SQLStatements();
-            sqlStatements.getClient(mailTextField.getText());
+
         } else {
             messageField.setVisible(true);
             messageField.setText("Logowanie nieudane");

@@ -8,8 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 class PaneChanger {
-    public Scene mainScene;
-    public Stage window;
+    public  Scene mainScene;
+    public  Stage window;
     Stage paneChange(ActionEvent event, String PaneFxmlFile) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(PaneFxmlFile));
         Parent root1 = (Parent) fxmlLoader.load();

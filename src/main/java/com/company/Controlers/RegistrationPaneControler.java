@@ -53,8 +53,7 @@ public class RegistrationPaneControler {
     }
 
     public void goBackToLogin(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("LoginPane.fxml"));
-        Parent root1 = /*(Parent)*/ fxmlLoader.load();
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("LoginPane.fxml"));
         Scene mainScene = new Scene(root1);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainScene);

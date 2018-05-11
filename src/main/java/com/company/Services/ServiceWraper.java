@@ -5,5 +5,5 @@ import java.sql.Time;
 public class ServiceWraper {
     String name;
     Double price;
-    Double duration;
+    Integer duration;
 }

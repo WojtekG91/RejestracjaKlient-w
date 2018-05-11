@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
@@ -8,11 +8,11 @@
 
 <AnchorPane maxHeight="700" maxWidth="1000" minHeight="700" minWidth="1000" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controlers.MainPaneControler">
    <children>
-      <Label layoutX="689.0" layoutY="30.0" text="nameSurnameLable" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="30.0" />
-      <Button fx:id="scheduleVisitButton" layoutX="754.0" layoutY="512.0" mnemonicParsing="false" onAction="#serviceChoiceScreenOn" prefHeight="32.0" prefWidth="143.0" text="Schedule New Visit" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="50.0" />
-      <Button layoutX="754.0" layoutY="552.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Cancle Visit" AnchorPane.bottomAnchor="54.0" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="userNameLable" layoutX="769.0" layoutY="31.0" text="nameSurnameLable" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="31.0" />
       <ListView layoutX="66.0" layoutY="106.0" prefHeight="274.0" prefWidth="462.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="100.0" />
       <ImageView fitHeight="47.0" fitWidth="51.0" layoutX="829.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0" />
-      <Button fx:id="logoutButton" layoutX="798.0" layoutY="62.0" mnemonicParsing="false" onAction="#logoutButtonAction" text="Logout" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
+      <JFXButton fx:id="logoutButton" layoutX="763.0" layoutY="615.0" onAction="#logoutButtonAction" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: darkcyan;" text="Logout" />
+      <JFXButton fx:id="logoutButton1" layoutX="763.0" layoutY="113.0" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: darkcyan;" text="Cancle Visit" />
+      <JFXButton fx:id="scheduleVisitButton" layoutX="763.0" layoutY="62.0" onAction="#serviceChoiceScreenOn" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: darkcyan;" text="Schedule New Visit" />
    </children>
 </AnchorPane>
