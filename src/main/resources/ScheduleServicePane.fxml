@@ -16,12 +16,12 @@
       <HBox fx:id="serviceHBox" layoutX="41.0" layoutY="74.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="70.0">
          <children>
             <ComboBox fx:id="categoryComboBox" prefHeight="29.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox" onAction="#ItemChangerListener" onInputMethodTextChanged="#getValues" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
-            <Label fx:id="servicePriceLable" prefHeight="35.0" prefWidth="112.0" text="Label" />
-            <Label fx:id="serviceDurationLable" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
+            <ComboBox fx:id="serviceComboBox" onAction="#comboAction" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
+            <Label fx:id="servicePriceLabel" prefHeight="35.0" prefWidth="112.0" text="Label" />
+            <Label fx:id="serviceDurationLabel" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
          </children>
       </HBox>
-      <HBox fx:id="serviceHBox1" focusTraversable="true" layoutX="41.0" layoutY="121.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="110.0">
+      <HBox fx:id="serviceHBox1" focusTraversable="true" layoutX="41.0" layoutY="121.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="110.0">
          <children>
             <ComboBox fx:id="categoryComboBox1" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
             <ComboBox fx:id="serviceComboBox1" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
@@ -29,18 +29,18 @@
             <Label fx:id="serviceDurationLable1" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
          </children>
       </HBox>
-      <HBox fx:id="serviceHBox2" layoutX="41.0" layoutY="170.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0">
+      <HBox fx:id="serviceHBox2" layoutX="41.0" layoutY="170.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0">
          <children>
-            <ComboBox fx:id="categoryComboBox11" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox11" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
+            <ComboBox fx:id="categoryComboBox2" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
+            <ComboBox fx:id="serviceComboBox2" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
             <Label fx:id="servicePriceLable11" prefHeight="35.0" prefWidth="112.0" text="Label" />
             <Label fx:id="serviceDurationLable11" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
          </children>
       </HBox>
-      <HBox fx:id="serviceHBox3" layoutX="41.0" layoutY="210.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="190.0">
+      <HBox fx:id="serviceHBox3" layoutX="41.0" layoutY="210.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="190.0">
          <children>
-            <ComboBox fx:id="categoryComboBox111" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox111" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
+            <ComboBox fx:id="categoryComboBox3" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
+            <ComboBox fx:id="serviceComboBox3" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
             <Label fx:id="servicePriceLable111" prefHeight="35.0" prefWidth="112.0" text="Label" />
             <Label fx:id="serviceDurationLable111" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
          </children>
@@ -70,7 +70,8 @@
             <Label fx:id="sumToPayLable" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <JFXButton fx:id="addAnotherServiceButton" layoutX="432.0" layoutY="284.0" style="-fx-background-color: darkcyan;" text="Add Another Service" />
+      <JFXButton fx:id="addAnotherServiceButton" layoutX="363.0" layoutY="284.0" onAction="#addAnotherService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Add Another Service" textAlignment="CENTER" AnchorPane.leftAnchor="300.0" />
+      <JFXButton fx:id="removeServiceButton" layoutX="500.0" layoutY="284.0" onAction="#addAnotherService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Remove Service" textAlignment="CENTER" AnchorPane.rightAnchor="300.0" />
        
    </children>
 
