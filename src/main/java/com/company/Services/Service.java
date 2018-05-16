@@ -3,12 +3,12 @@ package com.company.Services;
 public class Service {
     private String name;
     private Double price;
-    private Integer durationInMin;
+    private Integer duration;
 
-    public Service(String name, Double price, Integer durationInMin) {
+    public Service(String name, Double price, Integer duration) {
         this.name = name;
         this.price = price;
-        this.durationInMin = durationInMin;
+        this.duration = duration;
     }
 
     public String getName() {
@@ -28,24 +28,21 @@ public class Service {
     }
 
     public Integer getDuration() {
-        return durationInMin;
+        return duration;
     }
 
-    public void setDuration(Double duration) {
-        this.durationInMin = durationInMin;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
-                ", price=" + price +
-                ", duration=" + durationInMin;
-    }
+        return name;   }
 
     public Service(ServiceWraper serviceWraper) {
         this.name = serviceWraper.name;
         this.price = serviceWraper.price;
-        this.durationInMin = serviceWraper.duration;
+        this.duration = serviceWraper.duration;
     }
 
 

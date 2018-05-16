@@ -2,6 +2,7 @@ package com.company.Controlers;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +15,8 @@ import com.company.Services.ServiceRepository;
 import com.company.Users.Client;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,142 +24,118 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class ServiceChoiceControler implements Initializable {
 
-    @FXML
-    private ComboBox categoryComboBox;
-    @FXML
-    private ComboBox categoryComboBox1;
-    @FXML
-    private ComboBox categoryComboBox2;
-    @FXML
-    private ComboBox categoryComboBox3;
-    @FXML
-    private ComboBox serviceComboBox;
-    @FXML
-    private ComboBox serviceComboBox1;
-    @FXML
-    private ComboBox serviceComboBox2;
-    @FXML
-    private ComboBox serviceComboBox3;
-    @FXML
-    private Button backToMainButton;
-    @FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
-    @FXML
-    private ChoiceBox<String> serviceChoiceBox1;
-    @FXML
-    private Label servicePriceLabel;
-    @FXML
-    private Label serviceDurationLabel;
-    @FXML
-    private HBox serviceHBox1;
-    @FXML
-    private HBox serviceHBox2;
-    @FXML
-    private HBox serviceHBox3;
-    @FXML
     private Button removeServiceButton;
     @FXML
     private Button addAnotherServiceButton;
+    @FXML
+    private TableView<Service> manicureTableView;
+    @FXML
+    private TableColumn<Service, String> manicureServiceName;
+    @FXML
+    private TableColumn<Service, Double> manicureServicePrice;
+    @FXML
+    private TableColumn<Service, Integer> manicureServiceDuration;
+    @FXML
+    private TableView<Service> pedicureTableView;
+    @FXML
+    private TableColumn<Service, String> pedicureServiceName;
+    @FXML
+    private TableColumn<Service, Double> pedicureServicePrice;
+    @FXML
+    private TableColumn<Service, Integer> pedicureServiceDuration;
+    @FXML
+    private Tab pedicureTabButton;
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private ListView addedServiceList;
+    @FXML
+    private Label extimatedTimeLable;
+    @FXML
+    private Label sumToPayLable;
 
-        private Map<String, String> prices = new HashMap<>();
+    private Map<String, String> prices = new HashMap<>();
     private Map<String, String> duration = new HashMap<>();
     ArrayList<HBox> hBoxes = new ArrayList<>();
-    ArrayList<ComboBox> categoryComboBoxes = new ArrayList<>();
-    ArrayList<ComboBox> serviceComboBoxes = new ArrayList<>();
     ServiceRepository serviceRepository = new ServiceRepository();
-    ComboBoxPopulation comboBoxPopulation = new ComboBoxPopulation();
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         //assert serviceChoiceBox1 != null : "fx:id=\"serviceChoiceBox1\" was not injected: check your FXML file 'ScheduleServicePane.fxml'.";
+//        addedServiceList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        hBoxes.add(serviceHBox1);
-        hBoxes.add(serviceHBox2);
-        hBoxes.add(serviceHBox3);
-        categoryComboBoxes.add(categoryComboBox);
-        categoryComboBoxes.add(categoryComboBox1);
-        categoryComboBoxes.add(categoryComboBox2);
-        categoryComboBoxes.add(categoryComboBox3);
-        serviceComboBoxes.add(serviceComboBox);
-        serviceComboBoxes.add(serviceComboBox1);
-        serviceComboBoxes.add(serviceComboBox2);
-        serviceComboBoxes.add(serviceComboBox3);
+        manicureServiceName.setCellValueFactory(new PropertyValueFactory<Service, String>("name"));
+        manicureServicePrice.setCellValueFactory(new PropertyValueFactory<Service, Double>("price"));
+        manicureServiceDuration.setCellValueFactory(new PropertyValueFactory<Service, Integer>("duration"));
 
-        categoryComboBox.getItems().setAll("Manicure", "Pedicure", "Lashes");
-        categoryComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-//                comboBoxPopulation.comboBoxFill(categoryComboBox, serviceComboBox, serviceRepository);
-                if (categoryComboBox.getValue().equals("Manicure")) {
-                    serviceComboBox.getItems().clear();
-                    for (int i = 0; i < serviceRepository.manicure().size(); i++) {
-                        Service service = serviceRepository.manicure().get(i);
-                        serviceComboBox.getItems().add(service.getName());
-                        prices.put(service.getName(), service.getPrice().toString());
-                        duration.put(service.getName(), service.getDuration().toString());
-                    }
-                } else if (categoryComboBox.getValue().equals("Pedicure")) {
-                    serviceComboBox.getItems().clear();
-                    for (int i = 0; i < serviceRepository.pedicure().size(); i++) {
-                        Service service = serviceRepository.pedicure().get(i);
-                        serviceComboBox.getItems().add(service.getName());
-                        prices.put(service.getName(), service.getPrice().toString());
-                        duration.put(service.getName(), service.getDuration().toString());
-                    }
-                } else if (categoryComboBox.getValue().equals("Lashes")) {
-                    serviceComboBox.getItems().clear();
-                    for (int i = 0; i < serviceRepository.brwi().size(); i++) {
-                        Service service = serviceRepository.brwi().get(i);
-                        serviceComboBox.getItems().add(service.getName());
-                        prices.put(service.getName(), service.getPrice().toString());
-                        duration.put(service.getName(), service.getDuration().toString());
-                    }
-                }
-            }
-        });
+        pedicureServiceName.setCellValueFactory(new PropertyValueFactory<Service, String>("name"));
+        pedicureServicePrice.setCellValueFactory(new PropertyValueFactory<Service, Double>("price"));
+        pedicureServiceDuration.setCellValueFactory(new PropertyValueFactory<Service, Integer>("duration"));
+
+           manicureTableView.setItems(manicureList());
+        pedicureTableView.setItems(pedicureList());
+
     }
 
+    Integer totalTime = 0;
+    Double totalPrice = 0.0;
 
-    public void comboAction(ActionEvent event) {
-        servicePriceLabel.setText(prices.get(serviceComboBox.getValue()) + " PLN");
-        serviceDurationLabel.setText(duration.get(serviceComboBox.getValue()) + " min");
-    }
-
-    private int i = 0;
-
-    public void addAnotherService(ActionEvent event) {
+    @FXML
+    private void getService(ActionEvent event) {
+        Service service = manicureTableView.getSelectionModel().getSelectedItem();
+        Service service2 = pedicureTableView.getSelectionModel().getSelectedItem();
         if (event.getSource() == addAnotherServiceButton) {
-            if (i < 3) {
-                HBox addHBox = hBoxes.get(i);
-                addHBox.setVisible(true);
-                i++;
+            if (service == null && service2 == null) {
+                System.out.println("Nothing selected");
+            } else if (service != null){
+//                String name = service.getName();
+                Double price = service.getPrice();
+                Integer duration = service.getDuration();
+                addedServiceList.getItems().add(service);
+                totalTime += duration;
+                extimatedTimeLable.setText(totalTime.toString() + " min");
+                totalPrice += price;
+                sumToPayLable.setText(totalPrice.toString() + " PLN");
+            } else if (service2 != null){
+                Double price = service2.getPrice();
+                Integer duration = service2.getDuration();
+                addedServiceList.getItems().add(service2);
+                totalTime += duration;
+                extimatedTimeLable.setText(totalTime.toString() + " min");
+                totalPrice += price;
+                sumToPayLable.setText(totalPrice.toString() + " PLN");
             }
+
         } else if (event.getSource() == removeServiceButton) {
-            if (i <= 3 && i > 0) {
-                i--;
-                HBox addHBox = hBoxes.get(i);
-                addHBox.setVisible(false);
-            }
+            ObservableList<Service> selected;
+            selected = addedServiceList.getSelectionModel().getSelectedItems();
+
         }
     }
 
-//    public void removeService(ActionEvent event) {
-//        if (i <= 3 && i > 0) {
-//            i--;
-//            HBox addHBox = hBoxes.get(i);
-//            addHBox.setVisible(false);
-//        }
+
+    private ObservableList<Service> manicureList() {
+        ObservableList<Service> serviceManicure = FXCollections.observableArrayList(serviceRepository.manicure());
+        return serviceManicure;
+    }
+
+    private ObservableList<Service> pedicureList() {
+        ObservableList<Service> servicePedicure = FXCollections.observableArrayList(serviceRepository.pedicure());
+        return servicePedicure;
+    }
+
+//    public void fillTab(ActionEvent event) {
+//        pedicureServiceName.setCellValueFactory(new PropertyValueFactory<Service, String>("name"));
+//        pedicureServicePrice.setCellValueFactory(new PropertyValueFactory<Service, Double>("price"));
+//        pedicureServiceDuration.setCellValueFactory(new PropertyValueFactory<Service, Integer>("name"));
+//        pedicureTableView.setItems(pedicureList());
 //    }
 
 

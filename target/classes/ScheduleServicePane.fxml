@@ -2,50 +2,21 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTimePicker?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane maxHeight="700" maxWidth="1000" minHeight="700" minWidth="1000" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controlers.ServiceChoiceControler">
    <children>
-      <HBox fx:id="serviceHBox" layoutX="41.0" layoutY="74.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="70.0">
-         <children>
-            <ComboBox fx:id="categoryComboBox" prefHeight="29.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox" onAction="#comboAction" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
-            <Label fx:id="servicePriceLabel" prefHeight="35.0" prefWidth="112.0" text="Label" />
-            <Label fx:id="serviceDurationLabel" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
-         </children>
-      </HBox>
-      <HBox fx:id="serviceHBox1" focusTraversable="true" layoutX="41.0" layoutY="121.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="110.0">
-         <children>
-            <ComboBox fx:id="categoryComboBox1" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox1" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
-            <Label fx:id="servicePriceLable1" prefHeight="35.0" prefWidth="112.0" text="Label" />
-            <Label fx:id="serviceDurationLable1" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
-         </children>
-      </HBox>
-      <HBox fx:id="serviceHBox2" layoutX="41.0" layoutY="170.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0">
-         <children>
-            <ComboBox fx:id="categoryComboBox2" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox2" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
-            <Label fx:id="servicePriceLable11" prefHeight="35.0" prefWidth="112.0" text="Label" />
-            <Label fx:id="serviceDurationLable11" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
-         </children>
-      </HBox>
-      <HBox fx:id="serviceHBox3" layoutX="41.0" layoutY="210.0" prefHeight="32.0" prefWidth="869.0" spacing="40.0" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="190.0">
-         <children>
-            <ComboBox fx:id="categoryComboBox3" prefHeight="28.0" prefWidth="140.0" promptText="Service Type" />
-            <ComboBox fx:id="serviceComboBox3" prefHeight="28.0" prefWidth="316.0" promptText="Service" />
-            <Label fx:id="servicePriceLable111" prefHeight="35.0" prefWidth="112.0" text="Label" />
-            <Label fx:id="serviceDurationLable111" layoutX="390.0" layoutY="10.0" prefHeight="35.0" prefWidth="112.0" text="Label" />
-         </children>
-      </HBox>
-      <AnchorPane layoutX="41.0" layoutY="333.0" prefHeight="128.0" prefWidth="301.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="350.0">
+      <AnchorPane layoutX="60.0" layoutY="440.0" prefHeight="128.0" prefWidth="301.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="440.0">
          <children>
             <JFXTimePicker layoutX="12.0" layoutY="72.0" prefHeight="26.0" prefWidth="278.0" />
             <JFXDatePicker layoutX="12.0" layoutY="14.0" prefHeight="30.0" prefWidth="278.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="14.0" />
@@ -53,7 +24,7 @@
       </AnchorPane>
       <JFXButton fx:id="backToMainButton" layoutX="41.0" layoutY="14.0" onAction="#backToMainScreen" style="-fx-background-color: darkcyan;" text="Back" textAlignment="CENTER" />
       <JFXButton fx:id="submitButton" layoutX="418.0" layoutY="610.0" prefHeight="32.0" prefWidth="164.0" style="-fx-background-color: darkcyan;" text="Register" AnchorPane.bottomAnchor="60.0" />
-      <GridPane layoutX="573.0" layoutY="352.0" prefHeight="90.0" prefWidth="246.0" AnchorPane.rightAnchor="154.0" AnchorPane.topAnchor="350.0">
+      <GridPane layoutX="600.0" layoutY="354.0" prefHeight="90.0" prefWidth="246.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="450.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,12 +37,62 @@
          <children>
             <Label text="Estimated time:" textAlignment="CENTER" GridPane.rowIndex="1" />
             <Label text="Sum to pay:" GridPane.rowIndex="2" />
-            <Label fx:id="extimatedTimeLable" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="sumToPayLable" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="extimatedTimeLable" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="sumToPayLable" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <JFXButton fx:id="addAnotherServiceButton" layoutX="363.0" layoutY="284.0" onAction="#addAnotherService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Add Another Service" textAlignment="CENTER" AnchorPane.leftAnchor="300.0" />
-      <JFXButton fx:id="removeServiceButton" layoutX="500.0" layoutY="284.0" onAction="#addAnotherService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Remove Service" textAlignment="CENTER" AnchorPane.rightAnchor="300.0" />
+      <JFXButton fx:id="addAnotherServiceButton" layoutX="363.0" layoutY="284.0" onAction="#getService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Add Service" textAlignment="CENTER" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="320.0" />
+      <JFXButton fx:id="removeServiceButton" layoutX="500.0" layoutY="284.0" onAction="#getService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Remove Service" textAlignment="CENTER" AnchorPane.bottomAnchor="280.0" AnchorPane.rightAnchor="320.0" />
+      <TabPane fx:id="tabPane" layoutX="41.0" layoutY="54.0" prefHeight="310.0" prefWidth="516.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
+        <tabs>
+          <Tab text="Manicure">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="manicureTableView" layoutX="-12.0" layoutY="-11.0" prefHeight="164.0" prefWidth="915.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="manicureServiceName" minWidth="300.0" prefWidth="300.0" text="Service" />
+                            <TableColumn fx:id="manicureServicePrice" prefWidth="100.0" text="Price" />
+                              <TableColumn id="manicureServiceDuration" fx:id="manicureServiceDuration" prefWidth="100.0" text="Duration" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="pedicureTabButton" text="Pedicure">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="pedicureTableView" prefHeight="164.0" prefWidth="425.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn id="pedicureServiceName" fx:id="pedicureServiceName" maxWidth="400.0" minWidth="300.0" prefWidth="300.0" text="Service" />
+                              <TableColumn id="pedicureServicePrice" fx:id="pedicureServicePrice" minWidth="0.0" prefWidth="100.0" text="Price" />
+                              <TableColumn id="pedicureServiceDuration" fx:id="pedicureServiceDuration" prefWidth="100.0" text="Duration" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Brwi">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="lashesTableView" prefHeight="164.0" prefWidth="915.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn id="lashesServiceName" prefWidth="300.0" text="Service" />
+                              <TableColumn id="lashesServicePrice" prefWidth="100.0" text="Price" />
+                              <TableColumn id="lashesServiceDuration" prefWidth="100.0" text="Duration" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <JFXListView fx:id="addedServiceList" layoutX="576.0" layoutY="54.0" prefHeight="310.0" prefWidth="389.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
        
    </children>
 
