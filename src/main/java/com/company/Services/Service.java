@@ -37,7 +37,8 @@ public class Service {
 
     @Override
     public String toString() {
-        return name;   }
+        return name + " " + price + " PLN " + duration + " min";
+    }
 
     public Service(ServiceWraper serviceWraper) {
         this.name = serviceWraper.name;

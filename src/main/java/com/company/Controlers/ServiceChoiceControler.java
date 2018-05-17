@@ -4,11 +4,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.company.Services.Service;
 import com.company.Services.ServiceRepository;
@@ -51,7 +50,19 @@ public class ServiceChoiceControler implements Initializable {
     @FXML
     private TableColumn<Service, Integer> pedicureServiceDuration;
     @FXML
+    private TableView<Service> lashesTableView;
+    @FXML
+    private TableColumn<Service, String> lashesServiceName;
+    @FXML
+    private TableColumn<Service, Double> lashesServicePrice;
+    @FXML
+    private TableColumn<Service, Integer> lashesServiceDuration;
+    @FXML
+    private Tab manicureTabButton;
+    @FXML
     private Tab pedicureTabButton;
+    @FXML
+    private Tab lashesTabButton;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -79,10 +90,28 @@ public class ServiceChoiceControler implements Initializable {
         pedicureServicePrice.setCellValueFactory(new PropertyValueFactory<Service, Double>("price"));
         pedicureServiceDuration.setCellValueFactory(new PropertyValueFactory<Service, Integer>("duration"));
 
-           manicureTableView.setItems(manicureList());
-        pedicureTableView.setItems(pedicureList());
+        lashesServiceName.setCellValueFactory(new PropertyValueFactory<Service, String>("name"));
+        lashesServicePrice.setCellValueFactory(new PropertyValueFactory<Service, Double>("price"));
+        lashesServiceDuration.setCellValueFactory(new PropertyValueFactory<Service, Integer>("duration"));
 
+        manicureTableView.setItems(manicureList());
+        pedicureTableView.setItems(pedicureList());
+        lashesTableView.setItems(lashesList());
+        tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+            @Override
+            public void changed(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
+
+            }
+        });
+
+        addedServiceList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+
+            }
+        });
     }
+
 
     Integer totalTime = 0;
     Double totalPrice = 0.0;
@@ -91,34 +120,73 @@ public class ServiceChoiceControler implements Initializable {
     private void getService(ActionEvent event) {
         Service service = manicureTableView.getSelectionModel().getSelectedItem();
         Service service2 = pedicureTableView.getSelectionModel().getSelectedItem();
-        if (event.getSource() == addAnotherServiceButton) {
-            if (service == null && service2 == null) {
-                System.out.println("Nothing selected");
-            } else if (service != null){
+        if (service == null && service2 == null) {
+            System.out.println("Nothing selected");
+        } else if (service != null) {
 //                String name = service.getName();
-                Double price = service.getPrice();
-                Integer duration = service.getDuration();
-                addedServiceList.getItems().add(service);
-                totalTime += duration;
-                extimatedTimeLable.setText(totalTime.toString() + " min");
-                totalPrice += price;
-                sumToPayLable.setText(totalPrice.toString() + " PLN");
-            } else if (service2 != null){
-                Double price = service2.getPrice();
-                Integer duration = service2.getDuration();
-                addedServiceList.getItems().add(service2);
-                totalTime += duration;
-                extimatedTimeLable.setText(totalTime.toString() + " min");
-                totalPrice += price;
-                sumToPayLable.setText(totalPrice.toString() + " PLN");
-            }
+            Double price = service.getPrice();
+            Integer duration = service.getDuration();
+            addedServiceList.getItems().add(service);
+            totalTime += duration;
+            extimatedTimeLable.setText(totalTime.toString() + " min");
+            totalPrice += price;
+            sumToPayLable.setText(totalPrice.toString() + " PLN");
+        }
+    }
 
-        } else if (event.getSource() == removeServiceButton) {
-            ObservableList<Service> selected;
-            selected = addedServiceList.getSelectionModel().getSelectedItems();
+
+    @FXML
+    private void removeService(ActionEvent event) {
+        final int selectedIDx = addedServiceList.getSelectionModel().getSelectedIndex();
+        if (selectedIDx != -1) {
+            Object removeItem = addedServiceList.getSelectionModel().getSelectedItem();
+
+            Pattern p = Pattern.compile("-?\\d+(,\\d+)*?\\.?\\d+?");
+            List<String> numbers = new ArrayList<String>();
+            Matcher m = p.matcher(removeItem.toString());
+            while (m.find()) {
+                numbers.add(m.group());
+            }
+            totalTime -= Integer.parseInt(numbers.get(1));
+            extimatedTimeLable.setText(totalTime.toString() + " min");
+            totalPrice -= Double.parseDouble(numbers.get(0));
+            sumToPayLable.setText(totalPrice.toString() + " PLN");
+
+            final int newSelectedIDx = (selectedIDx == addedServiceList.getItems().size() - 1) ? selectedIDx - 1 : selectedIDx;
+
+            addedServiceList.getItems().remove(selectedIDx);
+            addedServiceList.getSelectionModel().select(newSelectedIDx);
 
         }
     }
+
+//        if (event.getSource() == addAnotherServiceButton) {
+//            if (service == null && service2 == null) {
+//                System.out.println("Nothing selected");
+//            } else if (service != null) {
+////                String name = service.getName();
+//                Double price = service.getPrice();
+//                Integer duration = service.getDuration();
+//                addedServiceList.getItems().add(service);
+//                totalTime += duration;
+//                extimatedTimeLable.setText(totalTime.toString() + " min");
+//                totalPrice += price;
+//                sumToPayLable.setText(totalPrice.toString() + " PLN");
+//            } else if (service2 != null) {
+//                Double price = service2.getPrice();
+//                Integer duration = service2.getDuration();
+//                addedServiceList.getItems().add(service2);
+//                totalTime += duration;
+//                extimatedTimeLable.setText(totalTime.toString() + " min");
+//                totalPrice += price;
+//                sumToPayLable.setText(totalPrice.toString() + " PLN");
+//            }
+//
+//        } else if (event.getSource() == removeServiceButton) {
+//            ObservableList<Service> selected;
+//            selected = addedServiceList.getSelectionModel().getSelectedItems();
+//
+//        }
 
 
     private ObservableList<Service> manicureList() {
@@ -128,6 +196,11 @@ public class ServiceChoiceControler implements Initializable {
 
     private ObservableList<Service> pedicureList() {
         ObservableList<Service> servicePedicure = FXCollections.observableArrayList(serviceRepository.pedicure());
+        return servicePedicure;
+    }
+
+    private ObservableList<Service> lashesList() {
+        ObservableList<Service> servicePedicure = FXCollections.observableArrayList(serviceRepository.brwi());
         return servicePedicure;
     }
 
@@ -146,8 +219,8 @@ public class ServiceChoiceControler implements Initializable {
         window.setScene(mainScene);
         window.show();
     }
-
 }
+
 
 
 

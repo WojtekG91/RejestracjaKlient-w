@@ -42,14 +42,14 @@
          </children>
       </GridPane>
       <JFXButton fx:id="addAnotherServiceButton" layoutX="363.0" layoutY="284.0" onAction="#getService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Add Service" textAlignment="CENTER" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="320.0" />
-      <JFXButton fx:id="removeServiceButton" layoutX="500.0" layoutY="284.0" onAction="#getService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Remove Service" textAlignment="CENTER" AnchorPane.bottomAnchor="280.0" AnchorPane.rightAnchor="320.0" />
-      <TabPane fx:id="tabPane" layoutX="41.0" layoutY="54.0" prefHeight="310.0" prefWidth="516.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
+      <JFXButton fx:id="removeServiceButton" layoutX="500.0" layoutY="284.0" onAction="#removeService" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: darkcyan;" text="Remove Service" textAlignment="CENTER" AnchorPane.bottomAnchor="280.0" AnchorPane.rightAnchor="320.0" />
+      <TabPane fx:id="tabPane" layoutX="41.0" layoutY="54.0" prefHeight="310.0" prefWidth="514.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
         <tabs>
-          <Tab text="Manicure">
+          <Tab fx:id="manicureTabButton" text="Manicure">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="manicureTableView" layoutX="-12.0" layoutY="-11.0" prefHeight="164.0" prefWidth="915.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="manicureTableView" layoutX="-12.0" layoutY="-11.0" prefHeight="164.0" prefWidth="513.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="manicureServiceName" minWidth="300.0" prefWidth="300.0" text="Service" />
                             <TableColumn fx:id="manicureServicePrice" prefWidth="100.0" text="Price" />
@@ -75,15 +75,15 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Brwi">
+            <Tab fx:id="lashesTabButton" text="Brwi">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="lashesTableView" prefHeight="164.0" prefWidth="915.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn id="lashesServiceName" prefWidth="300.0" text="Service" />
-                              <TableColumn id="lashesServicePrice" prefWidth="100.0" text="Price" />
-                              <TableColumn id="lashesServiceDuration" prefWidth="100.0" text="Duration" />
+                              <TableColumn id="lashesServiceName" fx:id="lashesServiceName" prefWidth="300.0" text="Service" />
+                              <TableColumn id="lashesServicePrice" fx:id="lashesServicePrice" prefWidth="100.0" text="Price" />
+                              <TableColumn id="lashesServiceDuration" fx:id="lashesServiceDuration" prefWidth="100.0" text="Duration" />
                            </columns>
                         </TableView>
                      </children>
@@ -92,7 +92,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <JFXListView fx:id="addedServiceList" layoutX="576.0" layoutY="54.0" prefHeight="310.0" prefWidth="389.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
+      <JFXListView fx:id="addedServiceList" layoutX="576.0" layoutY="54.0" prefHeight="310.0" prefWidth="445.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
        
    </children>
 
