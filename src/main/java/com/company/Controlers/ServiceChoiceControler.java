@@ -4,14 +4,19 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.company.SQL.SQLStatements;
 import com.company.Services.Service;
 import com.company.Services.ServiceRepository;
 import com.company.Users.Client;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,6 +35,7 @@ import javafx.stage.Stage;
 
 public class ServiceChoiceControler implements Initializable {
 
+    @FXML
     private Button removeServiceButton;
     @FXML
     private Button addAnotherServiceButton;
@@ -71,6 +77,12 @@ public class ServiceChoiceControler implements Initializable {
     private Label extimatedTimeLable;
     @FXML
     private Label sumToPayLable;
+    @FXML
+    private JFXDatePicker datePicker;
+    @FXML
+    private JFXTimePicker timePicker;
+    @FXML
+    private Button submitButton;
 
     private Map<String, String> prices = new HashMap<>();
     private Map<String, String> duration = new HashMap<>();
@@ -160,34 +172,17 @@ public class ServiceChoiceControler implements Initializable {
         }
     }
 
-//        if (event.getSource() == addAnotherServiceButton) {
-//            if (service == null && service2 == null) {
-//                System.out.println("Nothing selected");
-//            } else if (service != null) {
-////                String name = service.getName();
-//                Double price = service.getPrice();
-//                Integer duration = service.getDuration();
-//                addedServiceList.getItems().add(service);
-//                totalTime += duration;
-//                extimatedTimeLable.setText(totalTime.toString() + " min");
-//                totalPrice += price;
-//                sumToPayLable.setText(totalPrice.toString() + " PLN");
-//            } else if (service2 != null) {
-//                Double price = service2.getPrice();
-//                Integer duration = service2.getDuration();
-//                addedServiceList.getItems().add(service2);
-//                totalTime += duration;
-//                extimatedTimeLable.setText(totalTime.toString() + " min");
-//                totalPrice += price;
-//                sumToPayLable.setText(totalPrice.toString() + " PLN");
-//            }
-//
-//        } else if (event.getSource() == removeServiceButton) {
-//            ObservableList<Service> selected;
-//            selected = addedServiceList.getSelectionModel().getSelectedItems();
-//
-//        }
+    @FXML
+    public void registerService(ActionEvent event) {
+        String getDatePickerDate = datePicker.getValue().toString();
+        String getTimePickerTime = timePicker.getValue().toString();
+        List<String> services = addedServiceList.getItems();
+        System.out.println(services);
+        System.out.println(services.size());
 
+        SQLStatements sqlStatements = new SQLStatements();
+        System.out.println(getClientId());
+    }
 
     private ObservableList<Service> manicureList() {
         ObservableList<Service> serviceManicure = FXCollections.observableArrayList(serviceRepository.manicure());
@@ -204,12 +199,6 @@ public class ServiceChoiceControler implements Initializable {
         return servicePedicure;
     }
 
-//    public void fillTab(ActionEvent event) {
-//        pedicureServiceName.setCellValueFactory(new PropertyValueFactory<Service, String>("name"));
-//        pedicureServicePrice.setCellValueFactory(new PropertyValueFactory<Service, Double>("price"));
-//        pedicureServiceDuration.setCellValueFactory(new PropertyValueFactory<Service, Integer>("name"));
-//        pedicureTableView.setItems(pedicureList());
-//    }
 
 
     public void backToMainScreen(ActionEvent event) throws Exception {
@@ -218,6 +207,9 @@ public class ServiceChoiceControler implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainScene);
         window.show();
+    }
+    public void getClientId (Integer clientId){
+        int id = clientId;
     }
 }
 

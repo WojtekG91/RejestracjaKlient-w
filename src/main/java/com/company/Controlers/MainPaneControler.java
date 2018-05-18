@@ -1,5 +1,6 @@
 package com.company.Controlers;
 
+import com.company.SQL.SQLStatements;
 import com.company.Users.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,14 +25,17 @@ public class MainPaneControler implements Initializable {
     @FXML private Button scheduleVisitButton;
     @FXML private Button logoutButton;
     @FXML private Label userNameLable;
-
+    private int clientId;
 
     public void serviceChoiceScreenOn(ActionEvent event) throws Exception {
-        Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("ScheduleServicePane.fxml")));
+        FXMLLoader loader =new FXMLLoader(getClass().getClassLoader().getResource("ScheduleServicePane.fxml"));
+        Parent root1 = (Parent) loader.load();
         Scene mainScene = new Scene(root1);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainScene);
         window.show();
+        ServiceChoiceControler serviceChoiceControler = loader.getController();
+        serviceChoiceControler.getClientId(clientId);
     }
     public void logoutButtonAction(ActionEvent event) throws Exception{
         Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("LoginPane.fxml")));
@@ -48,6 +52,8 @@ public class MainPaneControler implements Initializable {
 
     public void getClient (Client client){
         userNameLable.setText("Witaj " + client.getName() + " " + client.getSurname());
+        clientId = client.getClientId();
+
     }
 
 

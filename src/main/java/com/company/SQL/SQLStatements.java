@@ -4,6 +4,8 @@ import com.company.Users.Client;
 import sun.security.util.Password;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class SQLStatements {
 
@@ -80,4 +82,27 @@ public class SQLStatements {
         return new Client(userId, userName, userSurname, userPhone, userPasswordHash, userMail);
     }
 
+    public void serviceListSubmit (Integer clientId, String service,  String date1, Time time, Integer duration, Double price, Integer employeeId){
+        java.sql.Date date = new java.sql.Date(0000-00-00);
+        Connection dbConnect = null;
+        PreparedStatement preparedStatement = null;
+        String sqlRegisterServices = "INSERT INTO `tservice`(`clientId`, `Service`, `Date`, 'Time', 'Duration', 'Price')" + "VALUES (?, ?, ?, ?, ?, ?);";
+        try {
+            dbConnect = SqlConnection.Connect();
+            preparedStatement = dbConnect.prepareStatement(sqlRegisterServices);
+//            preparedStatement.setInt(1, clientID);
+            preparedStatement.setInt(1, clientId);
+            preparedStatement.setString(2, service);
+            preparedStatement.setDate(3, date.valueOf(date1));
+            preparedStatement.setTime(4, time);
+            preparedStatement.setInt(5, duration);
+            preparedStatement.setDouble(6, price);
+            preparedStatement.setInt(6, employeeId);
+            preparedStatement.executeUpdate();
+            preparedStatement.clearParameters();
+            dbConnect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

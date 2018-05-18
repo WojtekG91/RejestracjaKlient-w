@@ -43,7 +43,6 @@ public class LoginPaneControler implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MainPane.fxml"));
             Parent root1 = (Parent) loader.load();
             MainPaneControler mainPaneControler = loader.getController();
-
             SQLStatements sqlStatements = new SQLStatements();
             mainPaneControler.getClient(sqlStatements.getClient(mailTextField.getText()));
 
