@@ -25,7 +25,7 @@ public class MainPaneControler implements Initializable {
     @FXML private Button scheduleVisitButton;
     @FXML private Button logoutButton;
     @FXML private Label userNameLable;
-    private int clientId;
+    private Client client1;
 
     public void serviceChoiceScreenOn(ActionEvent event) throws Exception {
         FXMLLoader loader =new FXMLLoader(getClass().getClassLoader().getResource("ScheduleServicePane.fxml"));
@@ -35,7 +35,7 @@ public class MainPaneControler implements Initializable {
         window.setScene(mainScene);
         window.show();
         ServiceChoiceControler serviceChoiceControler = loader.getController();
-        serviceChoiceControler.getClientId(clientId);
+        serviceChoiceControler.getClient(client1);
     }
     public void logoutButtonAction(ActionEvent event) throws Exception{
         Parent root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("LoginPane.fxml")));
@@ -51,9 +51,8 @@ public class MainPaneControler implements Initializable {
     }
 
     public void getClient (Client client){
-        userNameLable.setText("Witaj " + client.getName() + " " + client.getSurname());
-        clientId = client.getClientId();
-
+        client1 = client;
+        userNameLable.setText("Witaj " + client1.getName() + " " + client1.getSurname());
     }
 
 

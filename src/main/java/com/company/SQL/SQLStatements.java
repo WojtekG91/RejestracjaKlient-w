@@ -82,22 +82,23 @@ public class SQLStatements {
         return new Client(userId, userName, userSurname, userPhone, userPasswordHash, userMail);
     }
 
-    public void serviceListSubmit (Integer clientId, String service,  String date1, Time time, Integer duration, Double price, Integer employeeId){
+    public void serviceListSubmit (Integer clientId, String service, String date1, String time, Integer duration, Double price, Integer employeeId){
         java.sql.Date date = new java.sql.Date(0000-00-00);
         Connection dbConnect = null;
         PreparedStatement preparedStatement = null;
-        String sqlRegisterServices = "INSERT INTO `tservice`(`clientId`, `Service`, `Date`, 'Time', 'Duration', 'Price')" + "VALUES (?, ?, ?, ?, ?, ?);";
+//        INSERT INTO `tservice`(`clientId`, `Service`, `Date`, `Time`, `Duration`, `Price`, `EmployeeId`) VALUES (1, 'Hybryda', '2018-06-03', '03:45:00', 45, '50.0', 1)
+        String sqlRegisterServices = "INSERT INTO `tservice`(`clientId`, `Service`, `Date`, `Time`, `Duration`, `Price`, `EmployeeId`) " + "VALUES (?, ?, ?, ?, ?, ?, ?);";
         try {
             dbConnect = SqlConnection.Connect();
             preparedStatement = dbConnect.prepareStatement(sqlRegisterServices);
 //            preparedStatement.setInt(1, clientID);
             preparedStatement.setInt(1, clientId);
             preparedStatement.setString(2, service);
-            preparedStatement.setDate(3, date.valueOf(date1));
-            preparedStatement.setTime(4, time);
+            preparedStatement.setDate(3, java.sql.Date.valueOf(date1));
+            preparedStatement.setTime(4, java.sql.Time.valueOf(time));
             preparedStatement.setInt(5, duration);
             preparedStatement.setDouble(6, price);
-            preparedStatement.setInt(6, employeeId);
+            preparedStatement.setInt(7, employeeId);
             preparedStatement.executeUpdate();
             preparedStatement.clearParameters();
             dbConnect.close();

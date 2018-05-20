@@ -168,20 +168,31 @@ public class ServiceChoiceControler implements Initializable {
 
             addedServiceList.getItems().remove(selectedIDx);
             addedServiceList.getSelectionModel().select(newSelectedIDx);
-
         }
     }
 
     @FXML
     public void registerService(ActionEvent event) {
-        String getDatePickerDate = datePicker.getValue().toString();
-        String getTimePickerTime = timePicker.getValue().toString();
-        List<String> services = addedServiceList.getItems();
-        System.out.println(services);
-        System.out.println(services.size());
-
+        ObservableList services = addedServiceList.getItems();
         SQLStatements sqlStatements = new SQLStatements();
-        System.out.println(getClientId());
+
+        if (datePicker != null || timePicker != null || services != null) {
+            Date getDatePickerDate = Date.valueOf(datePicker.getValue());
+            Time getTimePickerTime = Time.valueOf(timePicker.getValue());
+            for (int i = 0; i < services.size(); i++) {
+                Object removeItem = services.get(i);
+
+                Pattern p = Pattern.compile("-?\\d+(,\\d+)*?\\.?\\d+?");
+                List<String> numbers = new ArrayList<String>();
+                Matcher m = p.matcher(removeItem.toString());
+                while (m.find()) {
+                    numbers.add(m.group());
+                }
+                Integer serviceTime = Integer.parseInt(numbers.get(1));
+                Double servicePrice = Double.parseDouble(numbers.get(0));
+                sqlStatements.serviceListSubmit(client.getClientId(), services.get(i).toString(), getDatePickerDate.toString(), getTimePickerTime.toString(), serviceTime, servicePrice, 1);
+            }
+        }
     }
 
     private ObservableList<Service> manicureList() {
@@ -200,7 +211,6 @@ public class ServiceChoiceControler implements Initializable {
     }
 
 
-
     public void backToMainScreen(ActionEvent event) throws Exception {
         Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("MainPane.fxml"));
         Scene mainScene = new Scene(root1);
@@ -208,8 +218,12 @@ public class ServiceChoiceControler implements Initializable {
         window.setScene(mainScene);
         window.show();
     }
-    public void getClientId (Integer clientId){
-        int id = clientId;
+
+    private Client client;
+
+    public void getClient(Client client) {
+        this.client = client;
+        System.out.println(client.getClientId());
     }
 }
 
