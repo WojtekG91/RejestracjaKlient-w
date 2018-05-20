@@ -3,6 +3,7 @@ package com.company.SQL;
 import com.company.Users.Client;
 import sun.security.util.Password;
 
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,8 +83,8 @@ public class SQLStatements {
         return new Client(userId, userName, userSurname, userPhone, userPasswordHash, userMail);
     }
 
-    public void serviceListSubmit (Integer clientId, String service, String date1, String time, Integer duration, Double price, Integer employeeId){
-        java.sql.Date date = new java.sql.Date(0000-00-00);
+    public void serviceListSubmit(Integer clientId, String service, String date1, String time, Integer duration, Double price, Integer employeeId) {
+        java.sql.Date date = new java.sql.Date(0000 - 00 - 00);
         Connection dbConnect = null;
         PreparedStatement preparedStatement = null;
 //        INSERT INTO `tservice`(`clientId`, `Service`, `Date`, `Time`, `Duration`, `Price`, `EmployeeId`) VALUES (1, 'Hybryda', '2018-06-03', '03:45:00', 45, '50.0', 1)
@@ -106,4 +107,42 @@ public class SQLStatements {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<String> getUpcomingVisits(Integer clientId) {
+        ArrayList<String> serviceName = new ArrayList<>();
+        Date serviceDate = null;
+        Time serviceTime = null;
+        Integer serviceDuration = 0;
+        Double servicePrice = 0.0;
+        Integer employee = 0;
+        Connection dbConnect = null;
+        Statement statement = null;
+        String sqlSelect = "SELECT `Service`, `Date`, `Time`, `Duration`, `Price`, `EmployeeId`  FROM `tservice` WHERE clientId = '" + clientId + "'";
+        try {
+            dbConnect = SqlConnection.Connect();
+            statement = dbConnect.createStatement();
+            ResultSet rs = statement.executeQuery(sqlSelect);
+            int rsCount = 0;
+            while (rs.next()) {
+                serviceName.add(rs.getString("Service"));
+                serviceDate = rs.getDate("Date");
+                serviceTime = rs.getTime("Time");
+                serviceDuration = rs.getInt("Duration");
+                servicePrice = rs.getDouble("Price");
+                employee = rs.getInt("EmployeeId");
+            }
+            if (statement.getMoreResults()){
+                rs = statement.getResultSet();
+            }else{
+                rs.close();
+                rs = null;
+            }
+            statement.close();
+            dbConnect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return serviceName;
+    }
 }
+

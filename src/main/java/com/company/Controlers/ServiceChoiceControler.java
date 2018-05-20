@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -175,13 +176,12 @@ public class ServiceChoiceControler implements Initializable {
     public void registerService(ActionEvent event) {
         ObservableList services = addedServiceList.getItems();
         SQLStatements sqlStatements = new SQLStatements();
-
         if (datePicker != null || timePicker != null || services != null) {
             Date getDatePickerDate = Date.valueOf(datePicker.getValue());
             Time getTimePickerTime = Time.valueOf(timePicker.getValue());
+
             for (int i = 0; i < services.size(); i++) {
                 Object removeItem = services.get(i);
-
                 Pattern p = Pattern.compile("-?\\d+(,\\d+)*?\\.?\\d+?");
                 List<String> numbers = new ArrayList<String>();
                 Matcher m = p.matcher(removeItem.toString());
@@ -190,7 +190,9 @@ public class ServiceChoiceControler implements Initializable {
                 }
                 Integer serviceTime = Integer.parseInt(numbers.get(1));
                 Double servicePrice = Double.parseDouble(numbers.get(0));
-                sqlStatements.serviceListSubmit(client.getClientId(), services.get(i).toString(), getDatePickerDate.toString(), getTimePickerTime.toString(), serviceTime, servicePrice, 1);
+                String serviceName= services.get(i).toString().replaceAll("\\d", "").replaceAll("PLN", "").replaceAll("min", "")
+                        .replaceAll(".", "");
+                sqlStatements.serviceListSubmit(client.getClientId(), serviceName, getDatePickerDate.toString(), getTimePickerTime.toString(), serviceTime, servicePrice, 1);
             }
         }
     }

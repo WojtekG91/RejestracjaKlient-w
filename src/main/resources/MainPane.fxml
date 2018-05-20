@@ -9,7 +9,7 @@
 <AnchorPane maxHeight="700" maxWidth="1000" minHeight="700" minWidth="1000" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controlers.MainPaneControler">
    <children>
       <Label fx:id="userNameLable" layoutX="769.0" layoutY="31.0" text="nameSurnameLable" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="31.0" />
-      <ListView layoutX="66.0" layoutY="106.0" prefHeight="274.0" prefWidth="462.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="100.0" />
+      <ListView fx:id="upcomingVisitsList" layoutX="66.0" layoutY="106.0" prefHeight="274.0" prefWidth="462.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="100.0" />
       <ImageView fitHeight="47.0" fitWidth="51.0" layoutX="829.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0" />
       <JFXButton fx:id="logoutButton" layoutX="763.0" layoutY="615.0" onAction="#logoutButtonAction" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: darkcyan;" text="Logout" />
       <JFXButton fx:id="logoutButton1" layoutX="763.0" layoutY="113.0" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: darkcyan;" text="Cancle Visit" />
